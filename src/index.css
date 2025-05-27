@@ -53,6 +53,102 @@ nav a:hover {
   text-decoration: underline;
 }
 
+/* CTA Section Styles */
+.cta-section {
+  position: relative;
+  overflow: visible;
+  background: var(--primary-green);
+  padding-bottom: 8rem; /* for image overlap */
+}
+
+.cta-content {
+  flex: 1;
+  color: white;
+  z-index: 1;
+}
+
+.cta-content h1 {
+  color: var(--primary-yellow);
+  font-family: "Markazi Text", serif;
+  font-size: 3rem;
+  margin: 0;
+}
+
+.cta-content h2,
+.cta-content p {
+  color: #fff;
+  margin: 0;
+}
+
+.cta-content h2 {
+  font-size: 2rem;
+}
+
+.cta-content p {
+  font-size: 1.2rem;
+  max-width: 400px;
+}
+
+.cta-button {
+  background: var(--primary-yellow);
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 2rem;
+  font-size: 1.1rem;
+  font-family: "Markazi Text", serif;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background 0.2s;
+}
+
+.cta-button:hover {
+  background: #ffe066;
+}
+
+.cta-image {
+  position: absolute;
+  bottom: -20%; /* overlap into white section */
+  right: 10rem; /* exactly 10rem from the viewport's right edge */
+  z-index: 2;
+}
+
+.cta-image img {
+  width: 320px;
+  height: 480px;
+  max-width: 100%;
+  border-radius: 16px;
+  object-fit: cover;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  display: block;
+}
+
+/* On desktop, align side by side and keep overlap */
+@media (min-width: 700px) {
+  .cta-section {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem 10rem 8rem 10rem; /* more bottom padding for overlap */
+  }
+  .cta-content,
+  .cta-image {
+    flex: 1;
+  }
+  .cta-content {
+    flex: 1;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .cta-image {
+    position: absolute;
+    bottom: -20%;
+    right: 10rem;
+    z-index: 2;
+  }
+}
+
 /**********   FOOTER STYLES   **********/
 
 .footer {

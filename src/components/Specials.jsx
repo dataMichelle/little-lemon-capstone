@@ -1,7 +1,7 @@
 import React from "react";
 
 const Specials = () => {
-  return <div>Specials</div>;
+  return <section>Specials</section>;
 };
 
 export default Specials;
