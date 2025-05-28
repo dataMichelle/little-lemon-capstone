@@ -16,7 +16,11 @@ const CTA = () => {
                 We are a family owned Mediterranean restaurant, focused on
                 traditional recipes served with a modern twist.
               </p>
-              <Button label="Reserve a Table" />
+              <Button
+                className="cta-button"
+                label="Reserve a Table"
+                bgColor="var(--primary-yellow)"
+              />
             </section>
           </article>
         </div>

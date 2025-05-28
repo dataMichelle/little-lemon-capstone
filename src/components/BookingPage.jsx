@@ -1,24 +1,31 @@
+// src/components/BookingPage.jsx
 import React, { useState, useEffect } from "react";
 import BookingForm from "./BookingForm";
 import BookingConfirmation from "./BookingConfirmation";
-import { initializeTimes, updateTimes } from "../utils/times";
+import { updateTimes } from "../utils/times";
 import "../styles/reservations.css";
 
 const BookingPage = () => {
   const [availableTimes, setAvailableTimes] = useState([]);
+  const [unavailableTimes, setUnavailableTimes] = useState([]);
   const [bookingData, setBookingData] = useState(() => {
-    // Load from localStorage on mount
     const stored = localStorage.getItem("littleLemonReservation");
     return stored ? JSON.parse(stored) : null;
   });
 
+  // Initialize times on mount
   useEffect(() => {
-    setAvailableTimes(initializeTimes());
+    const { available, unavailable } = updateTimes(new Date());
+    setAvailableTimes(available);
+    setUnavailableTimes(unavailable);
   }, []);
 
+  // Handle updating times on new date selection
   const dispatch = ({ type, date }) => {
     if (type === "UPDATE_TIMES") {
-      setAvailableTimes(updateTimes(date));
+      const { available, unavailable } = updateTimes(new Date(date));
+      setAvailableTimes(available);
+      setUnavailableTimes(unavailable);
     }
   };
 
@@ -32,7 +39,6 @@ const BookingPage = () => {
   };
 
   const handleChange = () => {
-    // Optionally keep the data to pre-fill the form, or clear it for a fresh start
     setBookingData(null);
   };
 
@@ -40,23 +46,21 @@ const BookingPage = () => {
     <div className="booking-wrapper">
       <section className="booking-header">
         <h1>Book a Table at Little Lemon</h1>
-        <p>Reserve your spot with just a few details below</p>
+        <h3>Reserve your spot with just a few details below</h3>
       </section>
       {!bookingData ? (
         <BookingForm
           availableTimes={availableTimes}
+          unavailableTimes={unavailableTimes}
           dispatch={dispatch}
           onSubmitSuccess={handleFormSubmit}
         />
       ) : (
-        <>
-          <hr />
-          <BookingConfirmation
-            data={bookingData}
-            onCancel={handleCancel}
-            onChange={handleChange}
-          />
-        </>
+        <BookingConfirmation
+          data={bookingData}
+          onCancel={handleCancel}
+          onChange={handleChange}
+        />
       )}
     </div>
   );

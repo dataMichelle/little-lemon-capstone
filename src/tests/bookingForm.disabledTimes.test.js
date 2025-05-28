@@ -1,19 +1,28 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import BookingForm from "../components/BookingForm";
 
-test("unavailable times are disabled in dropdown", () => {
-  const unavailable = ["19:00"];
-  const availableTimes = ["17:00", "18:00", "19:00", "20:00"];
+const mockAvailableTimes = ["17:00", "18:00", "19:00", "20:00"];
+const mockUnavailableTimes = ["19:00"];
 
-  render(
-    <BookingForm
-      availableTimes={availableTimes}
-      unavailableTimes={unavailable}
-      dispatch={() => {}}
-    />
-  );
+describe("BookingForm", () => {
+  test("unavailable times are disabled in dropdown", async () => {
+    render(
+      <BookingForm
+        availableTimes={mockAvailableTimes}
+        unavailableTimes={mockUnavailableTimes}
+        dispatch={() => {}}
+        onSubmitSuccess={() => {}}
+      />
+    );
 
-  const option = screen.getByRole("option", { name: "19:00" });
-  expect(option).toBeDisabled();
+    // Select a date and click button to reveal times
+    const dateInput = screen.getByLabelText(/date/i);
+    fireEvent.change(dateInput, { target: { value: "2023-12-25" } });
+    fireEvent.click(screen.getByRole("button", { name: /find a table/i }));
+
+    // Assert 19:00 is rendered and disabled
+    const timeButton = await screen.findByRole("button", { name: "7:00 PM" });
+    expect(timeButton).toBeDisabled();
+  });
 });

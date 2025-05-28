@@ -8,7 +8,7 @@ const Specials = () => {
       <div className="container">
         <header className="specials-header-row">
           <h1 id="specials-heading">This week's specials!</h1>
-          <Button label="Online Menu" />
+          <Button className="specials-button" label="Online Menu" />
         </header>
 
         <section className="specials-list" aria-label="Specials Menu">

@@ -1,5 +1,5 @@
 import Nav from "./Nav";
-import Logo from "../assets/lemon.png";
+import Logo from "../assets/logo.png";
 
 const Header = () => {
   return (
@@ -8,7 +8,7 @@ const Header = () => {
         <div className="header-row">
           <div className="logo-group">
             <img src={Logo} height={60} alt="Little Lemon" />
-            <p className="logo-text">Little Lemon</p>
+            {/* <p className="logo-text">Little Lemon</p> */}
           </div>
           <Nav />
         </div>

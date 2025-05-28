@@ -1,11 +1,16 @@
+// BookingForm.jsx
 import React, { useState } from "react";
 import { submitAPI } from "../api/api";
 import Button from "./Button";
-import { updateTimes as fetchTimes } from "../utils/times";
 import { formatTime } from "../utils/timeDate";
 import "../styles/reservations.css";
 
-const BookingForm = ({ availableTimes, dispatch, onSubmitSuccess }) => {
+const BookingForm = ({
+  availableTimes = [],
+  unavailableTimes = [],
+  dispatch,
+  onSubmitSuccess,
+}) => {
   const [step, setStep] = useState(1);
   const [resDate, setResDate] = useState("");
   const [guests, setGuests] = useState(1);
@@ -17,7 +22,6 @@ const BookingForm = ({ availableTimes, dispatch, onSubmitSuccess }) => {
   const [errors, setErrors] = useState({});
   const [comments, setComments] = useState("");
 
-  // Step 1: Find a Table
   const handleFindTable = (e) => {
     e.preventDefault();
     if (!resDate) {
@@ -29,29 +33,18 @@ const BookingForm = ({ availableTimes, dispatch, onSubmitSuccess }) => {
     setStep(2);
   };
 
-  // Step 2: Select Time
-  const handleTimeSelect = (time) => {
-    setSelectedTime(time);
-    setStep(3);
-  };
-
-  // Step 3: Submit Reservation
-  const validate = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     const errs = {};
     if (!name) errs.name = "Full name is required";
     if (!phone) errs.phone = "Phone number is required";
     if (email && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email))
       errs.email = "Valid email is required";
-    return errs;
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const errs = validate();
     if (Object.keys(errs).length) {
       setErrors(errs);
       return;
     }
+
     const formData = {
       resDate,
       resTime: selectedTime,
@@ -62,9 +55,9 @@ const BookingForm = ({ availableTimes, dispatch, onSubmitSuccess }) => {
       email,
       comments,
     };
+
     const success = submitAPI(formData);
     if (success) {
-      // Store in localStorage
       localStorage.setItem("littleLemonReservation", JSON.stringify(formData));
       onSubmitSuccess(formData);
     }
@@ -75,11 +68,14 @@ const BookingForm = ({ availableTimes, dispatch, onSubmitSuccess }) => {
 
   return (
     <form onSubmit={handleSubmit} className="booking-form">
-      {/* Group 1: Table Details */}
       <fieldset className="form-fieldset" style={{ marginBottom: "2rem" }}>
         <legend className="form-legend">Table Details</legend>
         <div className="booking-top-row">
+          <label htmlFor="res-date" className="visually-hidden">
+            Date
+          </label>
           <input
+            id="res-date"
             type="date"
             className={inputClass}
             value={resDate}
@@ -142,28 +138,34 @@ const BookingForm = ({ availableTimes, dispatch, onSubmitSuccess }) => {
         />
         {errors.resDate && <div className="error">{errors.resDate}</div>}
 
-        {/* Times row: visible after Find a Table */}
         {step >= 2 && (
           <div className="booking-times-row" style={{ marginTop: "1rem" }}>
-            {availableTimes.length === 0 && (
-              <span>No times available for this date.</span>
-            )}
-            {availableTimes.map((time) => (
-              <button
-                type="button"
-                key={time}
-                className={`${buttonClass} ${
-                  selectedTime === time ? "selected" : ""
-                }`}
-                onClick={() => {
-                  setSelectedTime(time);
-                  setStep(3);
-                }}
-                style={{ margin: "0.25rem" }}
-              >
-                {formatTime(resDate, time)}
-              </button>
-            ))}
+            {availableTimes.map((time) => {
+              const isDisabled = unavailableTimes.includes(time);
+              return (
+                <button
+                  type="button"
+                  key={time}
+                  className={`${buttonClass} 
+  ${selectedTime === time ? "selected" : ""} 
+  ${isDisabled ? "unavailable" : ""}`}
+                  onClick={() => {
+                    if (!isDisabled) {
+                      setSelectedTime(time);
+                      setStep(3);
+                    }
+                  }}
+                  disabled={isDisabled}
+                  title={
+                    isDisabled ? "This time is fully booked" : "Click to select"
+                  }
+                  style={{ margin: "0.25rem" }}
+                >
+                  {formatTime(resDate, time)}
+                </button>
+              );
+            })}
+
             {errors.selectedTime && (
               <div className="error">{errors.selectedTime}</div>
             )}
@@ -171,7 +173,6 @@ const BookingForm = ({ availableTimes, dispatch, onSubmitSuccess }) => {
         )}
       </fieldset>
 
-      {/* Group 2: Contact Details */}
       {step === 3 && (
         <fieldset className="form-fieldset">
           <legend className="form-legend">Contact Details</legend>
@@ -208,7 +209,6 @@ const BookingForm = ({ availableTimes, dispatch, onSubmitSuccess }) => {
               className="rounded-btn"
             />
           </div>
-          {/* Show errors inline */}
           <div>
             {errors.name && <span className="error">{errors.name}</span>}
             {errors.phone && <span className="error">{errors.phone}</span>}
