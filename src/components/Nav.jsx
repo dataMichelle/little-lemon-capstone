@@ -18,21 +18,21 @@ const Nav = () => {
             Home
           </NavLink>
         </li>
-        {/* <li>
-          <NavLink to="/about">About</NavLink>
-        </li> */}
-        {/* <li>
-          <NavLink to="/menu">Menu</NavLink>
-        </li> */}
+        <li>
+          <NavLink to="#">About</NavLink>
+        </li>
+        <li>
+          <NavLink to="#">Menu</NavLink>
+        </li>
         <li>
           <NavLink to="/booking-page">Reservations</NavLink>
         </li>
-        {/* <li>
-          <NavLink to="/order-online">Order Online</NavLink>
-        </li> */}
-        {/* <li>
-          <NavLink to="/login">Login</NavLink>
-        </li> */}
+        <li>
+          <NavLink to="#">Order Online</NavLink>
+        </li>
+        <li>
+          <NavLink to="#">Login</NavLink>
+        </li>
       </ul>
     </nav>
   );
