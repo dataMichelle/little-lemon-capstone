@@ -25,13 +25,29 @@ const Footer = () => (
       </section>
 
       <nav className="footer-col" aria-label="Footer Navigation">
-        <Link to="/">Home</Link>
-        <Link to="/about">About</Link>
-        <Link to="/menu">Menu</Link>
-        <Link to="/reservations">Reservations</Link>
-        <Link to="/order-online">Order Online</Link>
-        <Link to="/login">Login</Link>
-        <Link to="/contact">Contact</Link>
+        <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/about">About</Link>
+          </li>
+          <li>
+            <Link to="/menu">Menu</Link>
+          </li>
+          <li>
+            <Link to="/reservations">Reservations</Link>
+          </li>
+          <li>
+            <Link to="/order-online">Order Online</Link>
+          </li>
+          <li>
+            <Link to="/login">Login</Link>
+          </li>
+          <li>
+            <Link to="/contact">Contact</Link>
+          </li>
+        </ul>
       </nav>
 
       <address className="footer-col">
@@ -45,7 +61,7 @@ const Footer = () => (
         </div>
       </address>
 
-      <section className="footer-col" aria-label="Social Media Links">
+      <section className="socials" aria-label="Social Media Links">
         <a
           href="https://facebook.com"
           target="_blank"
