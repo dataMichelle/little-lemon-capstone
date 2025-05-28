@@ -29,12 +29,6 @@ body {
   padding: 0 1rem;
 }
 
-@media (min-width: 900px) {
-  .container {
-    padding: 0 4rem;
-  }
-}
-
 /* ========== HEADER ========== */
 .header-row {
   display: flex;
@@ -555,13 +549,69 @@ nav a {
   align-items: center;
   justify-content: flex-start;
 }
+/* ...all your base styles above... */
 
+/* =========================
+   Responsive Styles
+   ========================= */
+
+/* 1024px breakpoint */
 @media (max-width: 1024px) {
   .footer .container {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
+/* 700px breakpoint */
+@media (max-width: 700px) {
+  /* Home Section */
+  .home-section .container {
+    display: block !important;
+    grid-template-columns: none !important;
+    gap: 0 !important;
+  }
+  .home-image {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-top: 1.5rem !important;
+    position: static !important;
+  }
+  .home-image img,
+  .home-image img:first-child,
+  .home-image img:last-child {
+    position: static !important;
+    width: 90vw !important;
+    max-width: 320px !important;
+    height: auto !important;
+    left: 0 !important;
+    top: 0 !important;
+    margin: 0 0 1rem 0 !important;
+    display: block !important;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1) !important;
+    z-index: auto !important;
+  }
+
+  /* CTA Section */
+  .cta-image {
+    position: static !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin: 2rem 0 0 0 !important;
+    width: 100% !important;
+  }
+  .cta-image img {
+    width: 90vw !important;
+    max-width: 320px !important;
+    height: auto !important;
+    margin: 0 auto !important;
+    display: block !important;
+  }
+}
+
+/* 600px breakpoint */
 @media (max-width: 600px) {
   .footer .container {
     grid-template-columns: 1fr;

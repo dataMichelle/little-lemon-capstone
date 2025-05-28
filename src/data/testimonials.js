@@ -1,51 +1,39 @@
-import chickenParm from "../assets/chicken-parmesan.png";
-import calamari from "../assets/calamari.png";
-import spagBolognese from "../assets/spaghetti-bolognese.png";
-import lemonDessert from "../assets/lemon-dessert.png";
+import customer1 from "../assets/avatar-sophia.png";
+import customer2 from "../assets/avatar-james.png";
+import customer3 from "../assets/avatar-julie.png";
+import customer4 from "../assets/avatar-michael.png";
 
 const testimonials = [
   {
     id: 1,
-    image: chickenParm,
-    name: "Chicken Parmesan",
-    price: "$16.99",
-    description:
-      "A classic Italian dish with breaded chicken, marinara sauce, and melted cheese served with a side of pasta.",
-    rating: 4.5,
+    image: customer1,
+    name: "Sophia Martinez",
+    rating: 5,
     review:
-      "The chicken Parmesan was fantastic! The chicken was tender and the marinara sauce was rich and flavorful. A must-try for any Italian food lover!",
+      "Little Lemon is my favorite spot in Chicago! The staff is always friendly and the atmosphere is so cozy. The food is consistently delicious and fresh. Highly recommend for a night out or a family dinner.",
   },
   {
     id: 2,
-    image: calamari,
-    name: "Fried Calamari",
-    price: "$10.99",
-    description:
-      "Tender calamari rings lightly breaded and fried, served with marinara sauce for dipping.",
-    rating: 4.0,
-    review:
-      "The fried calamari was perfectly crispy and tender. The marinara sauce complemented it well. A great appetizer to start the meal!",
+    image: customer2,
+    name: "James Bond",
+    rating: 3,
+    review: "It's pretty good. Will definitely be back!",
   },
   {
     id: 3,
-    image: spagBolognese,
-    name: "Spaghetti Bolognese",
-    price: "$12.99",
-    description:
-      "A hearty spaghetti dish topped with a rich and savory Bolognese sauce made from ground beef, tomatoes, and herbs.",
-    rating: 4.8,
+    image: customer3,
+    name: "Julie Smith",
+    rating: 5,
     review:
-      "The spaghetti Bolognese was absolutely delicious! The sauce was rich and flavorful, and the pasta was cooked to perfection. I would definitely order this again.",
+      "What a gem! The ambiance at Little Lemon is perfect for a relaxing meal. The staff made us feel right at home and the food was outstanding. Can't wait to return!",
   },
   {
     id: 4,
-    image: lemonDessert,
-    name: "Lemon Dessert",
-    price: "$5.99",
-    description: "A sweet and tangy lemon dessert to finish your meal.",
-    rating: 4.7,
+    image: customer4,
+    name: "Michael Johnson",
+    rating: 4.8,
     review:
-      "This lemon dessert is the perfect way to end a meal. It's light, refreshing, and not too sweet. Highly recommend!",
+      "Little Lemon exceeded my expectations. The menu has something for everyone and the flavors are spot on. The team goes above and beyond to make sure you have a great experience.",
   },
 ];
 
