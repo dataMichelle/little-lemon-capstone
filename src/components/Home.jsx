@@ -6,14 +6,14 @@ import rightImg from "../assets/server.png";
 
 const HomePage = () => {
   return (
-    <>
+    <main>
       <CTA />
       <Specials />
       <Testimonials />
-      <section className="home-section">
+      <section className="home-section" aria-labelledby="home-title">
         <div className="container">
           <div className="home-text">
-            <h1>Little Lemon</h1>
+            <h1 id="home-title">Little Lemon</h1>
             <h2>Chicago</h2>
             <p>
               Welcome to Little Lemon, a charming bistro located in the heart of
@@ -28,7 +28,7 @@ const HomePage = () => {
           </div>
         </div>
       </section>
-    </>
+    </main>
   );
 };
 

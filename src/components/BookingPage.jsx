@@ -43,9 +43,9 @@ const BookingPage = () => {
   };
 
   return (
-    <div className="booking-wrapper">
+    <main className="booking-wrapper" aria-labelledby="booking-title">
       <section className="booking-header">
-        <h1>Book a Table at Little Lemon</h1>
+        <h1 id="booking-title">Book a Table at Little Lemon</h1>
         <h3>Reserve your spot with just a few details below</h3>
       </section>
       {!bookingData ? (
@@ -62,7 +62,7 @@ const BookingPage = () => {
           onChange={handleChange}
         />
       )}
-    </div>
+    </main>
   );
 };
 

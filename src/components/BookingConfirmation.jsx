@@ -39,6 +39,7 @@ const BookingConfirmation = ({ data, onCancel, onChange }) => (
     >
       <button
         className="rounded-btn"
+        aria-label="Cancel Reservation"
         style={{
           background: "#fff",
           color: "#c00",
@@ -53,6 +54,7 @@ const BookingConfirmation = ({ data, onCancel, onChange }) => (
       </button>
       <button
         className="rounded-btn"
+        aria-label="Change Reservation"
         style={{
           background: "#fff",
           color: "#495e57",

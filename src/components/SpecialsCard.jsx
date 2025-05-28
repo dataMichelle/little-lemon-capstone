@@ -14,7 +14,12 @@ const SpecialsCard = ({ image, name, price, description }) => {
       </header>
       <footer className="specials-order-row">
         <Link to="#">Order a Delivery</Link>
-        <img src={bicycle} className="specials-icon" alt="Delivery icon" />
+        <img
+          src={bicycle}
+          className="specials-icon"
+          alt=""
+          aria-hidden="true"
+        />
       </footer>
     </article>
   );

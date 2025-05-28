@@ -53,7 +53,9 @@ const Footer = () => (
       <address className="footer-col">
         <div>123 Little Lemon Way</div>
         <div>Chicago, IL 73945</div>
-        <div>123-456-7890</div>
+        <a href="tel:123-456-7890" style={{ color: "white" }}>
+          123-456-7890
+        </a>
         <div>
           <a href="mailto:info@littlelemon.com" style={{ color: "white" }}>
             info@littlelemon.com
@@ -66,6 +68,7 @@ const Footer = () => (
           href="https://facebook.com"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="Facebook"
         >
           <FaFacebook style={iconStyle} />
         </a>
@@ -73,6 +76,7 @@ const Footer = () => (
           href="https://linkedin.com"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="LinkedIn"
         >
           <FaLinkedin style={iconStyle} />
         </a>
@@ -80,6 +84,7 @@ const Footer = () => (
           href="https://instagram.com"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="Instagram"
         >
           <FaInstagram style={iconStyle} />
         </a>

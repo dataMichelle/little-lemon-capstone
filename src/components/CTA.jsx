@@ -20,12 +20,16 @@ const CTA = () => {
                 className="cta-button"
                 label="Reserve a Table"
                 bgColor="var(--primary-yellow)"
+                type="button"
               />
             </section>
           </article>
         </div>
         <figure className="cta-image">
-          <img src={HomeImage} alt="Serving bruschetta at Little Lemon" />
+          <img
+            src={HomeImage}
+            alt="Person serving bruschetta at Little Lemon"
+          />
         </figure>
       </section>
       <div className="white-background"></div>

@@ -66,8 +66,16 @@ const BookingForm = ({
   const inputClass = "rounded-input";
   const buttonClass = "rounded-btn";
 
+  const isFormValid =
+    resDate &&
+    guests >= 1 &&
+    selectedTime &&
+    name.trim() &&
+    phone.trim() &&
+    (!email || /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email));
+
   return (
-    <form onSubmit={handleSubmit} className="booking-form">
+    <form onSubmit={handleSubmit} className="booking-form" noValidate>
       <fieldset className="form-fieldset" style={{ marginBottom: "2rem" }}>
         <legend className="form-legend">Table Details</legend>
         <div className="booking-top-row">
@@ -79,6 +87,7 @@ const BookingForm = ({
             type="date"
             className={inputClass}
             value={resDate}
+            min={new Date().toISOString().split("T")[0]} // Prevent past dates
             onChange={(e) => {
               setResDate(e.target.value);
               setStep(1);
@@ -136,8 +145,11 @@ const BookingForm = ({
             resize: "vertical",
           }}
         />
-        {errors.resDate && <div className="error">{errors.resDate}</div>}
-
+        {errors.resDate && (
+          <div className="error" role="alert">
+            {errors.resDate}
+          </div>
+        )}
         {step >= 2 && (
           <div className="booking-times-row" style={{ marginTop: "1rem" }}>
             {availableTimes.map((time) => {
@@ -145,6 +157,7 @@ const BookingForm = ({
               return (
                 <button
                   type="button"
+                  aria-label="On Click"
                   key={time}
                   className={`${buttonClass} 
   ${selectedTime === time ? "selected" : ""} 
@@ -167,7 +180,9 @@ const BookingForm = ({
             })}
 
             {errors.selectedTime && (
-              <div className="error">{errors.selectedTime}</div>
+              <div className="error" role="alert">
+                {errors.selectedTime}
+              </div>
             )}
           </div>
         )}
@@ -177,7 +192,11 @@ const BookingForm = ({
         <fieldset className="form-fieldset">
           <legend className="form-legend">Contact Details</legend>
           <div className="booking-details-row">
+            <label htmlFor="full-name" className="visually-hidden">
+              Full Name
+            </label>
             <input
+              id="full-name"
               type="text"
               className={inputClass}
               placeholder="Full Name"
@@ -186,16 +205,25 @@ const BookingForm = ({
               required
               style={{ marginRight: "1rem" }}
             />
+            <label htmlFor="phone" className="visually-hidden">
+              Phone
+            </label>
             <input
+              id="phone"
               type="tel"
               className={inputClass}
               placeholder="Phone"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               required
+              pattern="[0-9]{10}"
               style={{ marginRight: "1rem" }}
             />
+            <label htmlFor="email" className="visually-hidden">
+              Email (optional)
+            </label>
             <input
+              id="email"
               type="email"
               className={inputClass}
               placeholder="Email (optional)"
@@ -207,12 +235,25 @@ const BookingForm = ({
               label="Book the Table"
               type="submit"
               className="rounded-btn"
+              disabled={!isFormValid}
             />
           </div>
           <div>
-            {errors.name && <span className="error">{errors.name}</span>}
-            {errors.phone && <span className="error">{errors.phone}</span>}
-            {errors.email && <span className="error">{errors.email}</span>}
+            {errors.name && (
+              <span className="error" role="alert">
+                {errors.name}
+              </span>
+            )}
+            {errors.phone && (
+              <span className="error" role="alert">
+                {errors.phone}
+              </span>
+            )}
+            {errors.email && (
+              <span className="error" role="alert">
+                {errors.email}
+              </span>
+            )}
           </div>
         </fieldset>
       )}

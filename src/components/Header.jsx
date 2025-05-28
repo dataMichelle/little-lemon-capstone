@@ -7,7 +7,7 @@ const Header = () => {
       <div className="container">
         <div className="header-row">
           <div className="logo-group">
-            <img src={Logo} height={60} alt="Little Lemon" />
+            <img src={Logo} height={60} alt="Little Lemon Logo" />
             {/* <p className="logo-text">Little Lemon</p> */}
           </div>
           <Nav />

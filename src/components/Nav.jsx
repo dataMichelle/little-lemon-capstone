@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 const Nav = () => {
   return (
-    <nav>
+    <nav aria-label="Main Navigation">
       <ul
         style={{
           display: "flex",
